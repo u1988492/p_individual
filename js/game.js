@@ -1,14 +1,13 @@
-import { game as gController } from "./memory.js";
+import { clickCard } from "./memory.js";
 
-var game = $('#game');
+//Obtener elementos
+var c1 = $('#c1');
+var c2 = $('#c2');
+var c3 = $('#c3');
+var c4 = $('#c4');
 
-gController.init(updateSRC).forEach(function(card, indx){
-    game.append('<img id="c'+indx+'" class="card" title="card">');
-    card.pointer = $('#c'+indx);
-    card.pointer.on('click', () => gController.click(card));
-    card.pointer.attr("src", card.current);
-});
-
-function updateSRC(){
-    this.pointer.attr("src", this.current);
-}
+//Detectar cambios
+co1.on('click', function() { clickCard("co" )});
+co2.on('click', function() { clickCard("co" )});
+cb1.on('click', function() { clickCard("cb" )});
+cb2.on('click', function() { clickCard("cb" )});
