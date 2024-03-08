@@ -1,17 +1,18 @@
-import { clickCard } from "./memory.js";
+import { clickCard, init, start } from "./memory.js";
 
 //Obtener elementos
 var game = $("#game");
-var c1 = $('<ing id=');
-var c2 = $('#c2');
-var c3 = $('#c3');
-var c4 = $('#c4');
+var cards = [];
 
-//Detectar cambios
-co1.on('click', function() { clickCard("co" )});
-co2.on('click', function() { clickCard("co" )});
-cb1.on('click', function() { clickCard("cb" )});
-cb2.on('click', function() { clickCard("cb" )});
+init().forEach(function(_, indx){
+    game.append('<img id="c'+indx+'" title="card>');
+    var c = $('#c'+indx);
+    c.on('click', function(){clickCard(indx)});
+    cards.push(c);
+});
 
-//Modificar valores
-c1.attr()
+start();
+
+export function updateSRC(indx, value){
+    cards[indx].attr("src", value);
+}

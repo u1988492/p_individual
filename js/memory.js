@@ -1,58 +1,61 @@
-export var game = function(){
-    const back = '../resources/back.png';
-    const resources = ['../resources/cb.png', '../resources/co.png', '../resources/sb.png','../resources/so.png', '../resources/tb.png','../resources/to.png'];
-    const card = {
-        current: back,
-        clickable: true,
-        goBack: function (){
-            setTimeout(() => {
-                this.current = back;
-                this.clickable = true;
-                this.callback();
-            }, 1000);
-        },
-        goFront: function (){
-            this.current = this.front;
-            this.clickable = false;
-            this.callback();
-        }
-    };
+import { updateSRC } from "./game.js";
 
-    var lastCard;
-    var pairs = 2;
-    var points = 100;
+const back = '../resources/BACK.webp';
+const resources = ['../resources/EMPEROR.webp', '../resources/EMPRESS.webp',
+                    '../resources/STAR.webp', '../resources/WHEEL.webp'];
 
-    return {
-        init: function (call){
-            var items = resources.slice(); // Copiem l'array
-            items.sort(() => Math.random() - 0.5); // Aleatòria
-            items = items.slice(0, pairs); // Agafem els primers
-            items = items.concat(items);
-            items.sort(() => Math.random() - 0.5); // Aleatòria
-            return items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
-        },
-        click: function (card){
-            if (!card.clickable) return;
-            card.goFront();
-            if (lastCard){ // Segona carta
-                if (card.front === lastCard.front){
-                    pairs--;
-                    if (pairs <= 0){
-                        alert("Has guanyat amb " + points + " punts!");
-                        window.location.replace("../");
-                    }
-                }
-                else{
-                    [card, lastCard].forEach(c=>c.goBack());
-                    points-=25;
-                    if (points <= 0){
-                        alert ("Has perdut");
-                        window.location.replace("../");
-                    }
-                }
-                lastCard = null;
-            }
-            else lastCard = card; // Primera carta
-        }
+var game = {
+    lastCard: null,
+    points: 100,
+    pairs: 2
+}
+
+var items, itemState[];
+
+export function init(){
+    items = resources.slice(); //Copia array
+    items.sort(function(){ return Math.random() - 0.5});
+    items = items.slice(0, game.pairs);
+    itmes = items.concat(items);
+    items.sort(function(){ return Math.random() - 0.5});
+    return items;
+}
+
+export function start(){
+    items.forEach(function(_, indx){
+        updateSRC(indx, back);
+    });
+}
+
+export function clickCard(id){
+    if(itemState[id]) return;
+    itemState[id] = true;
+    if(!game.lastCard == null){
+        //Primera carta clicada
+        updateSRC(id, items[id]);
+        game.lastCard = id;
     }
-}();
+    else{
+        //Había una carta clicada previamente
+        if(items[game.lastCard] === items[id]){
+            updateSRC(id, items[id]);
+            game.pairs--;
+            if(game.pairs<=0){
+                alert("Has guanyat amb "+game.points+" points! :)");
+                window.location.replace("../");
+            }
+        }
+        else{
+            updateSRC(id, back);
+            updateSRC(game.lastCard, back);
+            itemState[id] = itemState[game.lastCard] = false;
+            game.points-=25;
+            if(game.points<=0){
+                //Perdido
+                alert("Has perdut :(");
+                window.location.replace("../");
+            }
+        }
+        game.lastCard = null;
+    }
+}
