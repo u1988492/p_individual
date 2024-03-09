@@ -4,15 +4,28 @@
 		<!--<meta http-equiv="refresh" content="3;./otherpage.html">-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script src="./js/menu.js"></script>
-		<link rel="stylesheet" 
-			href="./styles/menu.css">
+		<link rel="stylesheet" href="./styles/menu.css">
 		<title> Memory - Menú </title>
 	</head>
 	<body>
-		<h1 id="title">Menú</h1>
-		<button id="play" class="center"> Jugar </button>
-		<button id="options" class="center"> Opcions </button>
-		<button id="saves" class="center"> Partides </button>
-		<button id="exit" class="center"> Sortir </button>
+		<!--APP BOX-->
+		<div class="app">
+			<h1 id="title">MEMORY GAME</h1>
+			<div class="buttons">
+				<!--PLAY-->
+			<div id="play">
+				<button id="play_button" class="center"> JUGAR </button>
+			</div>
+			<!--SETTINGS AND SAVES-->
+			<div id="settings">
+				<button id="settings_button" class="center"> OPCIONS </button>
+				<button id="saves_button" class="center"> PARTIDES </button>
+			</div>
+			<!--EXIT-->
+			<div id="exit">
+				<button id="exit_button" class="center"> SORTIR </button>
+			</div>
+			</div>
+		</div>	
 	</body>
 </html>

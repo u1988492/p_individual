@@ -10,7 +10,7 @@ var game = {
     pairs: 2
 }
 
-var items, itemState[];
+var items, itemState = [];
 
 export function init(){
     items = resources.slice(); //Copia array

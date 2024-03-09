@@ -1,21 +1,123 @@
+/*BODY AND GENERAL STYLING*/
+
 *{
 	box-sizing: border-box;
 }
 
-
-#title, .center{
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+@font-face {
+	font-family: 'Derive';
+	src: url('Derive-BF65ea8bbbcb698.ttf');
 }
 
-button.center{
-	width: 6rem;
-	height: 3rem;
-	margin-top: 1rem;
+:root{
+	--white: #fffefd;
+	--light-pink: #ffcfcb;
+	--dark-pink: #1d0f0d;
+	--midtone-pink: #e39690;
+	--dark-pink2: #b16765;
+	--peach: #f2b599;
 }
 
-#title{
-	color:red;
-	text-align: center;
+body{
+	height: 100vh;
+	width: 100vw;
+	margin: 0px;
+	overflow: hidden;
+	font-family: 'Derive';
+	background-color: var(--white);
 }
+
+.app{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 50px;
+	gap: 18px;
+	position: relative;
+}
+
+button{
+	font-family: 'Derive';
+	padding: 8px;
+	border-radius: 8px;
+	color: var(--dark-pink);
+	background-color: var(--light-pink);
+	border: none;
+	font-size: 35px;
+}
+
+button:hover{
+	background-color: var(--dark-pink2);
+}
+
+button:active{
+	background-color: var(--dark-pink2);
+	color: var(--light-pink);
+	transform: translateY(4px);
+}
+
+h1{
+	font-family: 'Derive';
+	font-size: 40px;
+}
+
+.card{
+	height: 50px;
+	width: 50px;
+	overflow: hidden;
+}
+
+#c1{
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+/*MENU STYLING*/
+
+.buttons{
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	align-items: center;
+	position: relative;
+}
+.settings{
+	display: flex;
+	flex-direction: column;
+	gap: 70px;
+	position: relative;
+}
+
+/*GAME INTERFACE STYLING*/
+
+/*SETTINGS STYLING*/
+.options{
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	align-items: center;
+}
+
+#inputs{
+	font-size: 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+#n_cartes, #dificultat{
+	display: flex;
+	gap: 7px;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+#default{
+	font-size: 20px;
+}
+
+#save_settings{
+
+}
+/*SAVES STYLING*/
