@@ -80,22 +80,18 @@ h1{
 /*GAME INTERFACE STYLING*/
 
 #game{
-	align-items: center;
-	justify-content: center;
-}
-
-.cards{
 	height: 70vh;
 	width: 100vw;
 	justify-content: center;
-	overflow: auto;
 	display: flex;
+	flex-wrap: wrap;
+	overflow: scroll;
 	gap: 30px;
+	background-color: red;
 }
 
-#c1, #c2, #c3, #c4{
+.card{
 	object-fit: cover;
-	height: 100%;
 }
 
 /*#c1{
@@ -131,7 +127,4 @@ h1{
 	font-size: 20px;
 }
 
-#save_settings{
-
-}
 /*SAVES STYLING*/

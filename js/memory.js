@@ -1,6 +1,4 @@
-import { updateSRC } from "./game.js";
-
-export var game = function(){
+export var game = (function(){
     const back = '../resources/BACK.webp';
     const resources = ['../resources/EMPEROR.webp', '../resources/EMPRESS.webp',
                     '../resources/STAR.webp', '../resources/WHEEL.webp'];
@@ -15,6 +13,9 @@ export var game = function(){
             }, 1000);
         },
         goFront: function () {
+            this.current = this.front;
+            this.clickable = false;
+            this.callback();
 
         }
     };
@@ -27,7 +28,7 @@ export var game = function(){
             var items = resources.slice(); //Copia array
             items.sort(()=> Math.random() - 0.5);
             items = items.slice(0, pairs);
-            itmes = items.concat(items);
+            items = items.concat(items);
             items.sort(()=> Math.random() - 0.5);
             return items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
         },
@@ -52,15 +53,5 @@ export var game = function(){
                 }
             }
         }
-    }
-
-
-}();
-
-
-
-export function start(){
-    items.forEach(function(_, indx){
-        updateSRC(indx, back);
-    });
-}
+    };
+})();
