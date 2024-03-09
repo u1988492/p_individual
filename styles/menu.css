@@ -61,18 +61,6 @@ h1{
 	font-size: 40px;
 }
 
-.card{
-	height: 50px;
-	width: 50px;
-	overflow: hidden;
-}
-
-#c1{
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
-}
-
 /*MENU STYLING*/
 
 .buttons{
@@ -90,6 +78,32 @@ h1{
 }
 
 /*GAME INTERFACE STYLING*/
+
+#game{
+	align-items: center;
+	justify-content: center;
+}
+
+.cards{
+	height: 70vh;
+	width: 100vw;
+	justify-content: center;
+	overflow: auto;
+	display: flex;
+	gap: 30px;
+}
+
+#c1, #c2, #c3, #c4{
+	object-fit: cover;
+	height: 100%;
+}
+
+/*#c1{
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}*/
+
 
 /*SETTINGS STYLING*/
 .options{

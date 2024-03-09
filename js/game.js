@@ -1,18 +1,14 @@
-import { clickCard, init, start } from "./memory.js";
+import { game as gContrller } from "./memory.js";
 
-//Obtener elementos
-var game = $("#game");
-var cards = [];
+var game = $('#game');
 
-init().forEach(function(_, indx){
+gContrller.init(updateSRC).forEach(function(card, indx)){
     game.append('<img id="c'+indx+'" title="card>');
-    var c = $('#c'+indx);
-    c.on('click', function(){clickCard(indx)});
-    cards.push(c);
-});
+    card.pointer = $('#c'+indx);
+    card.pointer.on('click', () => gContrller.click(card));
+    card.pointer.attr("src", card.current);
+}
 
-start();
-
-export function updateSRC(indx, value){
-    cards[indx].attr("src", value);
+function updateSRC(){
+    this.pointer.attr("src", this.current);
 }
