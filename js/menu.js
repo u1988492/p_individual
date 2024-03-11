@@ -1,7 +1,7 @@
 addEventListener('load', function() {
     document.getElementById('play_button').addEventListener('click', 
     function(){
-        window.location.assign("./html/game.html");
+        window.location.assign("../html/game.html");
     });
 
     document.getElementById('settings_button').addEventListener('click', 
