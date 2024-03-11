@@ -1,7 +1,8 @@
 export var game = function(){
     const back = '../resources/BACK.webp';
     const resources = ['../resources/EMPEROR.webp', '../resources/EMPRESS.webp',
-                    '../resources/STAR.webp', '../resources/WHEEL.webp'];
+                    '../resources/STAR.webp', '../resources/WHEEL.webp', '../resources/CHARIOT.webp', '../resources/FOOL.webp',
+                    '../resources/HANGEDMAN.webp', '../resources/TOWER.webp', '../resources/HERMIT.webp', '../resources/HIEROPHANT.webp'];
     const card = {
         current: back,
         clickable: true,
@@ -19,9 +20,24 @@ export var game = function(){
 
         }
     };
+
+    //condiciones de puntos y tiempo para dificultad
+
+    var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
     var lastCard;
-    var pairs = 2;
+    var pairs = options.pairs;
     var points = 100;
+
+    /*if(options.difficulty==easy){
+
+    }
+    else if(options.difficulty==normal){
+
+    }
+    else if(options.difficulty==hard){
+
+    }
+    */
 
     return{
         init: function (call){
