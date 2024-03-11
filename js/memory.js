@@ -1,4 +1,4 @@
-export var game = (function(){
+export var game = function(){
     const back = '../resources/BACK.webp';
     const resources = ['../resources/EMPEROR.webp', '../resources/EMPRESS.webp',
                     '../resources/STAR.webp', '../resources/WHEEL.webp'];
@@ -20,7 +20,7 @@ export var game = (function(){
         }
     };
     var lastCard;
-    var pairs = 100;
+    var pairs = 2;
     var points = 100;
 
     return{
@@ -39,19 +39,21 @@ export var game = (function(){
                 if(card.front === lastCard.front){
                     pairs--;
                     if(pairs <= 0){
-                        alert("Has guanyat amb "+game.points+" points! :)");
+                        alert("Has guanyat amb "+points+" punts! :)");
                         window.location.replace("../");
                     }
-                    else{
-                        [card, lastCard].forEach(c=>c.goBack());
-                        points-=25;
-                        if(points<=0){
-                            alert("Has perdut :(");
-                            window.location.replace("../");
-                        }
+                }
+                else{
+                    [card, lastCard].forEach(c=>c.goBack());
+                    points-=25;
+                    if(points<=0){
+                        alert("Has perdut :(");
+                        window.location.replace("../");
                     }
                 }
+                lastCard = null;
             }
+            else lastCard = card;
         }
-    };
-})();
+    }
+}();

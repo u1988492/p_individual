@@ -15,7 +15,7 @@ var options = function(){
 
     return{
         applyChanges: function(){
-            //guardar cambios
+            localStorage.options=JSON.stringify(options);
         },
         defaultValues: function(){
             options.pairs = default_options.pairs;
