@@ -46,7 +46,18 @@ export var game = function(){
             items = items.slice(0, pairs);
             items = items.concat(items);
             items.sort(()=> Math.random() - 0.5);
-            return items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
+            var cards = items.map(item => Object.create(card, {front: {value:item}, callback: {value:call}}));
+
+            for(let i=0; i<cards.length;i++){
+                cards[i].current=cards[i].front;
+                setTimeout(() => {
+                   cards[i].current= back;
+                   
+                   cards[i].callback(); 
+                }, 1000);
+            }
+
+            return cards;
         },
         click: function(card){
             if(!card.clickable) return;
