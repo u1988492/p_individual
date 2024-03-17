@@ -1,3 +1,11 @@
+var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
+var lastCard;
+var pairs = options.pairs;
+var points = 100;
+var difficulty = options.difficulty;
+var lost_points;
+var time_shown;
+
 export var game = function(){
     const back = '../resources/BACK.webp';
     const resources = ['../resources/EMPEROR.webp', '../resources/EMPRESS.webp',
@@ -11,24 +19,35 @@ export var game = function(){
                 this.current = back;
                 this.clickable = true;
                 this.callback();
-            }, 1000);
+            }, time_shown);
         },
         goFront: function () {
             this.current = this.front;
             this.clickable = false;
             this.callback();
-
         }
     };
 
     //condiciones de puntos y tiempo para dificultad
 
-    var options = JSON.parse(localStorage.options||JSON.stringify(default_options));
-    var lastCard;
-    var pairs = options.pairs;
-    var points = 100;
-    var difficulty = options.difficulty;
-    var lost_points;
+    switch (difficulty){
+        case 'easy':
+            lost_points=10;
+            time_shown=2000;
+            break;
+        case 'normal':
+            lost_points=15;
+            time_shown=1000;
+            break;
+        case 'hard':
+            lost_points=25;
+            time_shown=500;
+            break;
+        default:
+            lost_points=15;
+            time_shown=1000;
+            break;
+    }
 
     return{
         init: function (call){
@@ -44,7 +63,7 @@ export var game = function(){
                 setTimeout(() => {
                    cards[i].current= back;
                    cards[i].callback(); 
-                }, 1000);
+                }, time_shown);
             }
 
             return cards;
@@ -62,20 +81,7 @@ export var game = function(){
                 }
                 else{
                     [card, lastCard].forEach(c=>c.goBack());
-                    switch (difficulty){
-                        case 'easy':
-                            lost_points=10;
-                            break;
-                        case 'normal':
-                            lost_points=15;
-                            break;
-                        case 'hard':
-                            lost_points=25;
-                            break;
-                        default:
-                            lost_points=15;
-                            break;
-                    }
+                    
                     points-=lost_points;
                     if(points<=0){
                         alert("Has perdut :(");
