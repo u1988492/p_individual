@@ -27,17 +27,8 @@ export var game = function(){
     var lastCard;
     var pairs = options.pairs;
     var points = 100;
-
-    /*if(options.difficulty==easy){
-
-    }
-    else if(options.difficulty==normal){
-
-    }
-    else if(options.difficulty==hard){
-
-    }
-    */
+    var difficulty = options.difficulty;
+    var lost_points;
 
     return{
         init: function (call){
@@ -52,7 +43,6 @@ export var game = function(){
                 cards[i].current=cards[i].front;
                 setTimeout(() => {
                    cards[i].current= back;
-                   
                    cards[i].callback(); 
                 }, 1000);
             }
@@ -72,7 +62,21 @@ export var game = function(){
                 }
                 else{
                     [card, lastCard].forEach(c=>c.goBack());
-                    points-=25;
+                    switch (difficulty){
+                        case 'easy':
+                            lost_points=10;
+                            break;
+                        case 'normal':
+                            lost_points=15;
+                            break;
+                        case 'hard':
+                            lost_points=25;
+                            break;
+                        default:
+                            lost_points=15;
+                            break;
+                    }
+                    points-=lost_points;
                     if(points<=0){
                         alert("Has perdut :(");
                         window.location.replace("../");
